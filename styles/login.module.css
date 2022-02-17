@@ -1,0 +1,32 @@
+.conatiner{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    padding:0px 5%;
+    grid-template-rows: 15% 85%;
+}
+
+.header{
+    width: 100%;
+    height: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.img{
+    width: 10%;
+    height: 25%;
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.card_main{
+    width: 30%;
+    height: 90%;
+    background-color: #f3f3f3;
+}

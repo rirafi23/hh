@@ -1,0 +1,35 @@
+.container{
+    width: 90%;
+    height: 30vh;
+    background-color: white;
+    box-shadow: #d3d3d3 0px 0px 10px 0px;
+    margin: 1vh auto;
+    display: grid;
+    grid-template-rows: 55% 45%;
+    cursor: pointer;
+}
+.card{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 70% 30%;
+    padding: 3%;
+}
+.text1{
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    font-size: 1em;
+    font-weight: 500;
+}
+.text2{
+    margin-block-end: 0px;
+    font-size: 0.95em;
+    margin-block-start: 0px;
+}
+.text3{
+    margin-block-end: 0px;
+    font-size: 0.8em;
+    width: 100%;
+    text-align: end;
+    margin-block-start: 0px;
+}
