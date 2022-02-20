@@ -12,7 +12,7 @@ const Card_page = ({res, onPress, key}) => {
         return 'Rp.'+rupiah.split('',rupiah.length-1).reverse().join('');
     }
     return(
-        <div key={1} onClick={()=>{
+        <div key={"1"} onClick={()=>{
             onPress()
         }} className={styles.container}>
             <img className={styles.img} alt="Aa" src={res.data().img[0]}/>
