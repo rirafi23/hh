@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import styles from '../../styles/card_product.module.css'
 
-const Card_page = ({res, onPress}) => {
+const Card_page = ({res, onPress, key}) => {
     const router = useRouter()
     function convertToRupiah(angka){
         var rupiah = '';		
@@ -12,7 +12,7 @@ const Card_page = ({res, onPress}) => {
         return 'Rp.'+rupiah.split('',rupiah.length-1).reverse().join('');
     }
     return(
-        <div onClick={()=>{
+        <div key={key} onClick={()=>{
             onPress()
         }} className={styles.container}>
             <img className={styles.img} alt="Aa" src={res.data().img[0]}/>

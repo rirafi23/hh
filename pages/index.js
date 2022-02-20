@@ -85,7 +85,7 @@ export default function Home() {
         </div>
         <div className={styles.main_main}>
           {data_product.map((a,b)=>{
-            return <Card_page onPress={()=>router.push({pathname:"/product/show", query:{ref_id:a.id, ref_query:a.data()}})} res={a}/>
+            return <Card_page key={b} onPress={()=>router.push({pathname:"/product/show", query:{ref_id:a.id, ref_query:a.data()}})} res={a}/>
           })}
         </div>
       </div>
