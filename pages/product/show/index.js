@@ -23,13 +23,15 @@ const ShowProduct = () => {
     const [base_keranjang, setbase_keranjang] = useState([])
     const router = useRouter()
     const ref_id = router.query.ref_id
+
     useEffect(()=>{
-        getData()
         const cart = localStorage.getItem("keranjang_base")
         if(cart !== null){
             setbase_keranjang(JSON.parse(cart))
         }
+        getData()
     },[])
+
     const getData = async () => {
        const Query = query(ProductCollection);
        const querySnapshot = await getDocs(Query); 
@@ -42,6 +44,7 @@ const ShowProduct = () => {
           } 
        });
     };
+
     function convertToRupiah(angka){
         var rupiah = '';		
         var angkarev = angka.toString().split('').reverse().join('');

@@ -7,13 +7,16 @@ import { useRouter } from 'next/router';
 
 const HeaderPage = ({req}) => {
     const [value_DD, setvalue_DD] = useState(false)
-    const [local_user, setlocal_user] = useState("")
+    const [local_user, setlocal_user] = useState([])
     const [cart, setcart] = useState(0)
     const [notif, setNotif] = useState()
     const router = useRouter()
     
     useEffect(()=>{
-        setlocal_user(localStorage.getItem("user_pembeli"))
+        const value = localStorage.getItem("user_pembeli")
+        if(value !== null){
+            setlocal_user(value)
+        }
         getData()
     },[])
 
@@ -23,9 +26,9 @@ const HeaderPage = ({req}) => {
             // alert(base)
             setcart(JSON.parse(base).length)
         }
-        setTimeout(() => {
-            getData()
-        },1000);
+        // setTimeout(() => {
+        //     getData()
+        // },1000);
     }
     
     const Login = (a) => {

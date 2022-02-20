@@ -15,7 +15,7 @@ const Card_page = ({res, onPress}) => {
         <div onClick={()=>{
             onPress()
         }} className={styles.container}>
-            <img className={styles.img} src={res.data().img[0]}/>
+            <img className={styles.img} alt="Aa" src={res.data().img[0]}/>
             <div className={styles.card}>
                 <div>
                 <p className={styles.text1}>{res.data().product_name.slice(0,13)}...</p>

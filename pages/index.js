@@ -14,13 +14,12 @@ import { Router, useRouter } from 'next/router'
 const ProductCollection = collection(firestore,"product_table");
 
 export default function Home() {
-  const [img_conten, setimg_conten] = useState({})
+  const [img_conten, setimg_conten] = useState(0)
   const [on_categori, seton_categori] = useState(1)
   const [data_product, setdata_product] = useState([])
   const router = useRouter()
 
   useEffect(()=>{
-    content_slide(0)
     getData()
   },[])
 
@@ -32,18 +31,19 @@ export default function Home() {
          var a = snapshot
           base_product.push(a)
      });
-     setdata_product(base_product)
+     if(base_product.length !== 0){
+       setdata_product(base_product)
+     }
   };
 
   const content_slide = (a) => {
-    setimg_conten({img:img_content[a], value:parseInt(a)+1})
-    setTimeout(()=>{
-      if(a === 2){
-        content_slide(0)
-      }else{
-        content_slide(a+1)
-      }
-    },60000)
+    return(
+      <div style={{backgroundImage: `url(${img_content[img_conten]})`}} className={styles.content}>
+        <div className={styles.content_absolute}>
+          <p className={styles.content_text}>{parseInt(img_conten)+1} / {img_content.length}</p>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -54,11 +54,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeaderPage/>
-      <div style={{backgroundImage: `url(${img_conten.img})`}} className={styles.content}>
-        <div className={styles.content_absolute}>
-          <p className={styles.content_text}>{img_conten.value} / {img_content.length}</p>
-        </div>
-      </div>
+      {content_slide()}
       <div className={styles.main}>
         <div className={styles.main_header2}>
           {[1,2,3,4,5].map((a,b)=>{
