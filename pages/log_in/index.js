@@ -5,8 +5,34 @@ import { BsArrowDown, BsArrowUp, BsFillBellFill,BsFillCartFill, BsMenuDown, BsSe
 import { useState } from 'react';
 import HeaderPage from '../header';
 
+// database
+import firestore from "../../firebase/clientApp";
+import {collection,QueryDocumentSnapshot,DocumentData,query,where,limit,getDocs, updateDoc, doc, deleteDoc} from "@firebase/firestore";
+import { useRouter } from 'next/router';
+
+const PenggunaCollection = collection(firestore,"pengguna");
+
 
 const LoginPage = () => {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const router = useRouter()
+
+    const onLogin = async () => {
+       const Query = query(PenggunaCollection);
+       const querySnapshot = await getDocs(Query); 
+       querySnapshot.forEach((snapshot) => {
+           const a = snapshot
+           if(a.data().email === email && a.data().password === password){
+            localStorage.setItem("user_pembeli",a.id)
+            router.push("/")
+           }else if(a.data().email === email && a.data().password !== password){
+                alert("password salah!!")
+           }else if(a.data().email !== email && a.data().password !== password){
+               alert("email belum terdaftar")
+           }
+       });
+    };
     return(
         <div className={styles.conatiner}>
             <Head key={1}>
@@ -15,11 +41,25 @@ const LoginPage = () => {
               <link rel="icon" href="/favicon.ico" />
             </Head>
             <header className={styles.header}>
-                <img className={styles.img} src='/vercel.svg'/>
+                <Image width={120} height={40} alt='mama' src={'/vercel.svg'}/>
             </header>
             <div className={styles.main}>
                 <div className={styles.card_main}>
-                    <p>Login</p>
+                    <p className={styles.text1}>Login</p>
+                    <div className={styles.box}>
+                        <div className={styles.box_input}>
+                            <label className={styles.label}>Email</label>
+                            <input onChange={e=>setEmail(e.target.value)} placeholder='email@gmail.com' className={styles.input}/>
+                        </div>
+                        <div className={styles.box_input}>
+                            <label className={styles.label}>Password</label>
+                            <input onChange={e=>setPassword(e.target.value)} placeholder='*******' className={styles.input}/>
+                        </div>
+                        <button onClick={()=>onLogin()} className={styles.btn}>LOGIN</button>
+                    </div>
+                    <div style={{width:"100%", height:"100%", display:"flex", justifyContent:"center",alignItems:"center"}}>
+                    <p>Belum Memiliki Akun <a className={styles.a}>Register...</a></p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -28,5 +28,77 @@
 .card_main{
     width: 30%;
     height: 90%;
-    background-color: #f3f3f3;
+    background-color: #e9e9e9;
+    display: grid;
+    grid-template-rows: 25% 60% 15%;
+}
+.text1{
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    font-size: 1.35em;
+    font-weight: bold;
+    margin: auto;
+}
+
+/* textinput */
+.box{
+    width: 100%;
+    height: 100%;
+    padding: 0px 5vh;
+}
+.box_input{
+    width: 100%;
+    margin-top: 2vh;
+}
+.label{
+    font-size: 1em;
+    font-weight: 500;
+}
+.input{
+    margin: 1.3vh 0px 0vh 0px;
+    width: 100%;
+    height: 6vh;
+    padding: 0px 5px;
+    font-size: 0.9em;
+    border: none;
+    border-radius: 10px;
+}
+.btn{
+    width: 95%;
+    margin:5vh 2.5% auto 2.5%;
+    height: 6.5vh;
+    border-radius: 5px;
+    background-color: orangered;
+    border: none;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: white;
+}
+.text2{
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    font-size: 1em;
+    font-weight: 400;
+}
+.a{
+    font-weight: 500;
+    font-size: 1em;
+    color: blue;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+    .conatiner{
+        grid-template-rows: 10% 90%;
+    }
+    .card_main{
+        width: 90%;
+        height: 80%;
+    }
+    .box{
+        padding: 0px 5%;
+    }
+    .input{
+        font-size: 1.1em;
+    }
 }
