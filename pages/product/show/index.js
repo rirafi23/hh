@@ -22,21 +22,21 @@ const ShowProduct = () => {
     const [base_varian, setbase_varian] = useState([])
     const [base_keranjang, setbase_keranjang] = useState([])
     const router = useRouter()
-    const ref_id = router.query.ref_id
+    const [ref_id, setref_id] = useState("") 
 
     useEffect(()=>{
         const cart = localStorage.getItem("keranjang_base")
         if(cart !== null){
             setbase_keranjang(JSON.parse(cart))
         }
-        getData()
+        // getData()
     },[])
 
     const getData = async () => {
-       const Query = query(ProductCollection);
-       const querySnapshot = await getDocs(Query); 
-       querySnapshot.forEach((snapshot) => {
-          if(snapshot.id === ref_id){
+        const Query = query(ProductCollection);
+        const querySnapshot = await getDocs(Query); 
+        querySnapshot.forEach((snapshot) => {
+          if(snapshot.id === router.query.ref_id){
               setbase(snapshot.data())
               setbase_varian(snapshot.data().varian)
               settrue_varian(snapshot.data().varian[0])
