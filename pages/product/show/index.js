@@ -23,27 +23,33 @@ const ShowProduct = () => {
     const [base_keranjang, setbase_keranjang] = useState([])
     const router = useRouter()
     const [ref_id, setref_id] = useState("") 
-
+    
+    
     useEffect(()=>{
         const cart = localStorage.getItem("keranjang_base")
         if(cart !== null){
             setbase_keranjang(JSON.parse(cart))
         }
-        // getData()
+        const getData = async () => {
+            const user_id = router.query.ref_id
+            const Query = query(ProductCollection);
+            const querySnapshot = await getDocs(Query); 
+            const a = []
+            querySnapshot.forEach((snapshot) => {
+                a.push(snapshot) 
+           });
+           const b = a.filter((a)=>a.id ===user_id )
+        //    alert(b)
+           if(b.length !== 0){ 
+            setbase(b[0].data())
+            setbase_varian(b[0].data().varian)
+            settrue_varian(b[0].data().varian[0])
+            setbase_img(b[0].data().img)
+        }
+        };
+        getData()
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
-
-    const getData = async () => {
-        const Query = query(ProductCollection);
-        const querySnapshot = await getDocs(Query); 
-        querySnapshot.forEach((snapshot) => {
-          if(snapshot.id === router.query.ref_id){
-              setbase(snapshot.data())
-              setbase_varian(snapshot.data().varian)
-              settrue_varian(snapshot.data().varian[0])
-              setbase_img(snapshot.data().img)
-          } 
-       });
-    };
 
     function convertToRupiah(angka){
         var rupiah = '';		
@@ -82,7 +88,9 @@ const ShowProduct = () => {
                         <p className={styles.text1}>Dashboard / <a style={{color:"black"}}>{base.product_name}</a></p>
                     </header>
                     <div className={styles.main_main_left}>
-                        <img alt='yy' src={base_img[show_img]}className={styles.image1}/>
+                        <div className={styles.image1}>
+                        <Image src={"/img-cth1.jpg"} width={60} height={60} layout="responsive" alt='yy'/>
+                        </div>
                         <div className={styles.img_row}>
                         {base_img.map((a,b)=>{
                             return (

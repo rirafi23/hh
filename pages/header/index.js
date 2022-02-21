@@ -88,7 +88,9 @@ const HeaderPage = ({req}) => {
                     <p className={styles.text}>Username</p>
                     <BsArrowDown/>
                     </div>  
-                    <img alt='yy' src='/user.png' className={styles.img_hiden}/>
+                    <div  className={styles.img_hiden}>
+                    <Image alt='yyyy' src={'/user.png'} layout="responsive" width={15} height={15}/>
+                    </div>
                 </div>
             ):(
                 <div className={styles.right}>

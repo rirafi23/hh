@@ -15,7 +15,12 @@ const Card_page = ({res, onPress, key}) => {
         <div key={"1"} onClick={()=>{
             onPress()
         }} className={styles.container}>
-            <img className={styles.img} alt="Aa" src={res.data().img[0]}/>
+            <div className={styles.img}>
+                <Image alt="Aa"
+                //  src={res.data().img[0]}
+                src={"https://media-exp1.licdn.com/dms/image/C560BAQHMnA03XDdf3w/company-logo_200_200/0/1519855918965?e=2159024400&v=beta&t=CrP5Le1mWICRcaxIGNBuajHcHGFPuyNA5C8DI339lSk"} 
+                 width="100%" height="100%" layout="fixed" />
+            </div>
             <div className={styles.card}>
                 <div>
                 <p className={styles.text1}>{res.data().product_name.slice(0,13)}...</p>

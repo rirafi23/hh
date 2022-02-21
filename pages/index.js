@@ -21,19 +21,7 @@ export default function Home() {
 
   useEffect(()=>{
     getData()
-    const interval= setInterval(tick, 3000)
-    return () => {
-      clearInterval(interval)
-    }
-  },[img_conten])
-
-  const tick = () => {
-    if(img_conten === 2){
-      setimg_conten(0)
-    }else{
-      setimg_conten(img_conten + 1)
-    }
-  }
+  },[])
 
   const getData = async () => {
     const base_product = []
@@ -50,7 +38,7 @@ export default function Home() {
 
   const content_slide = (a) => {
     return(
-      <div style={{backgroundImage: `url(${img_content[img_conten]})`}} className={styles.content}>
+      <div key={1} style={{backgroundImage: `url(${img_content[img_conten]})`}} className={styles.content}>
         <div className={styles.content_absolute}>
           <p className={styles.content_text}>{parseInt(img_conten)+1} / {img_content.length}</p>
         </div>
