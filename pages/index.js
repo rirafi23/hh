@@ -21,7 +21,19 @@ export default function Home() {
 
   useEffect(()=>{
     getData()
-  },[])
+    const interval= setInterval(tick, 3000)
+    return () => {
+      clearInterval(interval)
+    }
+  },[img_conten])
+
+  const tick = () => {
+    if(img_conten === 2){
+      setimg_conten(0)
+    }else{
+      setimg_conten(img_conten + 1)
+    }
+  }
 
   const getData = async () => {
     const base_product = []
