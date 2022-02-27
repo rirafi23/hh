@@ -17,9 +17,9 @@ const ProfilePage = () => {
                     <BsChatLeft/>
                 </div>
             <div className={styles.main1}>
-                {[1,2,3].map(()=>{
+                {[1,2,3].map((a)=>{
                     return(
-                        <div className={styles.card_main1}></div>
+                        <div key={a} className={styles.card_main1}></div>
                     )
                 })}
             </div>

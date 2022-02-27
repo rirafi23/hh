@@ -15,7 +15,7 @@ const PageNotif = () => {
             <main className={styles.main}>
                 {[1,2,3].map(a=>{
                     return(
-                        <div className={styles.card}>
+                        <div key={a} className={styles.card}>
                             <p className={styles.text1}>Nama Notif</p>
                             <p className={styles.text2}>Description notif</p>
                         </div>
