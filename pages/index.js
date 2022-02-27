@@ -10,6 +10,7 @@ const img_content = ["/img-cth1.jpg","/img-cth2.jpg","/img-cth3.jpg"]
 import firestore from "../firebase/clientApp";
 import {collection,QueryDocumentSnapshot,DocumentData,query,where,limit,getDocs, updateDoc, doc, deleteDoc} from "@firebase/firestore";
 import { Router, useRouter } from 'next/router'
+import PageNull from './page_null'
 
 const ProductCollection = collection(firestore,"product_table");
 
@@ -83,11 +84,15 @@ export default function Home() {
             )
           })}
         </div>
+        {data_product.length === 0 ? (
+          <div className={styles.card_null}><PageNull message={"Item Product Tidak ada"}/></div>
+        ):(
         <div className={styles.main_main}>
           {data_product.map((a,b)=>{
-            return <Card_page key={a.id} onPress={()=>router.push({pathname:"/product/show", query:{ref_id:a.id, ref_query:a.data()}})} res={a}/>
+            return <Card_page key={a.id} onPress={()=>router.push({pathname:"/product/show", query:{ref_id:a.id, ref_query:a.data()}})} data={a}/>
           })}
         </div>
+        )}
       </div>
     </div>
   )

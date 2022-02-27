@@ -71,6 +71,16 @@
 .main_header2{
   display: none;
 }
+
+.card_null{
+  padding: 3vh 0px;
+  background-color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 30vh;
+}
 @media only screen and (max-width: 600px) {
   .content{
     height: 40vh;

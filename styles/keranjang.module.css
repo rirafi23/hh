@@ -1,0 +1,314 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    /* background-color: red; */
+    display: grid;
+    grid-template-columns: 30% 70%;
+    padding: 0px 3%;
+}
+
+.left{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 10% 20% 13% 17.5% 17.5% 22% ;
+    background-color: white;
+    padding: 3vh 4vh;
+}
+.left_header{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    /* background-color: red; */
+}
+.icon1{
+    font-size: 1.4em;
+    font-weight: bold;
+}
+.text1{
+    margin-block-end: 0px;
+    margin-block-start: 1.5vh;
+    font-size: 0.9em;
+    font-weight: 400;
+    color: gray;
+    text-transform: capitalize;
+}
+.text2{
+    margin-block-end: 0px;
+    margin-block-start: 0vh;
+    font-size: 1.15em;
+    font-weight: 500;
+    color: black;
+    text-transform: capitalize;
+    margin-left: 1.5vh;
+}
+.left_row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.boxInput{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5vh;
+    padding: 0px;
+}
+.label{
+    font-size: 1em;
+    font-weight: 500;
+    margin-block-end: 1vh;
+    margin-block-start: 1vh;
+}
+.input1{
+    width: 100%;
+    height: 15vh;
+    border: solid gray 1px;
+    background-color: white;
+    border-radius: 5px;
+}
+.card_left{
+    width: 90%;
+    height: 10vh;
+    background-color: aqua;
+}
+.left_row2{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+}
+
+.right{
+    width: 100%;
+    padding: 2.5vh 3vh;
+    background-color: #e3e3e3;
+    border-radius: 5px;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 10% 72.5% 17.5%;
+}
+.box_right{
+    width: 100%;
+    height: 100%;
+    padding: 5vh 0px 2vh 0px;
+}
+.right_header{
+    width: 100%;
+    display: grid;
+    text-align: center;
+    margin-bottom: 2.5vh;
+    grid-template-columns: 7.5% 47.5% 15% 25% 5%;
+}
+.text3{
+    /* width: 100%;
+    border: solid;
+    background-color: aqua; */
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    margin:auto;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.text3_no{
+    /* width: 100%;
+    border: solid;
+    background-color: aqua; */
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    margin:auto;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.text3_varian{
+    /* width: 100%;
+    border: solid;
+    background-color: aqua; */
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    margin:auto;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.right_row{
+    width: 100%;
+    display: grid;
+    text-align: center;
+    grid-template-columns: 7.5% 47.5% 15% 25% 5%;
+    padding: 1vh 0px;
+    margin: 0.5vh;    
+    border-radius: 5px;
+}
+.card_product{
+    width: 100%;
+    height: 10vh;
+    /* background-color: aqua; */
+    display:grid;
+    grid-template-columns: 20% 80%;
+}
+.right_img{
+    width: 100%;
+    height: 100%;
+    background-color: #d3d3d3;
+}
+.boxProduct{
+    width: 100%;
+    height: 10vh;
+}
+.text4{
+    margin-block-start: 0.5vh;
+    margin-block-end: 0px;
+    font-size: 1em;
+    font-weight: 500;
+    width: 100%;
+    text-align: left;
+    margin-left: 1vh;
+}
+.text10_varian{
+    display: none;
+    margin-block-start: 2vh;
+    margin-block-end: 0px;
+    font-size: 1em;
+    font-weight: 500;
+    width: 100%;
+    text-align: left;
+    margin-left: 1vh;
+}
+.text5{
+    margin-block-start: 0.5vh;
+    margin-block-end: 0px;
+    font-size: 1em;
+    font-weight: 400;
+    margin: auto;
+}
+.text5_varian{
+    margin-block-start: 0.5vh;
+    margin-block-end: 0px;
+    font-size: 1em;
+    font-weight: 400;
+    margin: auto;
+}
+.row2_left{
+    width: 50%;
+    height: 5vh;
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    border:solid 1px gray;
+    /* /* justify-content: center; */
+    align-items: center; 
+    text-align: center;
+    margin: auto;
+}
+.btn{
+    border: none;
+    background-color: transparent;
+    font-size:1.1em;
+    font-weight:500;
+}
+.text7{
+    margin: 0px;
+    font-size: 1em;
+    font-weight: 500;
+}
+.footer{
+    width: 100%;
+    height: 100%;
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    padding:1vh 1.5vh;
+}
+.footer_left{
+    width: 100%;
+    height: 100%;
+}
+.footer_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.text8{
+    margin-block-end: 0.5vh;
+    margin-block-start: 0px;
+    font-size: 1em;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.text9{
+    margin-block-end: 0vh;
+    margin-block-start: 1vh;
+    font-size: 1.15em;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.footer_right{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-bottom: 1vh;
+    padding-right: 1vh;
+}
+.btn2{
+    width: 60%;
+    height: 6vh;
+    background-color: orangered;
+    border-radius: 5px;
+    border: none;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .container{
+        grid-template-columns: 100%;
+        grid-template-rows: 70%;
+    }
+    .left{
+        padding:3vh 1vh 0px 1vh;
+        grid-template-rows: 10% 27.5% 17.5% 22.5% 22.5%;
+    }
+    .text3_varian{
+        display: none;
+    }
+    .right{
+        padding: 1vh 0px;
+    }
+    .right_header{
+        grid-template-columns: 70% 30%;
+    }
+    .right_row{
+        grid-template-columns: 70% 30%;
+        width: 98%;
+    }
+    .text5_varian{
+        display: none;
+    }
+    .row2_left{
+        width: 90%;
+    }
+    .card_product{
+        grid-template-columns: 30% 70%;
+        padding: 0px 1vh;
+    }
+    .text10_varian{
+        display: block;
+    }
+    .text3_no{
+        display: none;
+    }
+    .footer{
+        height: 22.5vh;
+        grid-template-columns: 100%;
+    }
+}

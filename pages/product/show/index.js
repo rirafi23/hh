@@ -13,7 +13,7 @@ import {collection,QueryDocumentSnapshot,DocumentData,query,where,limit,getDocs,
 const ProductCollection = collection(firestore,"product_table");
 
 
-const ShowProduct = () => {
+export default function ShowProduct () {
     const [show_img, setshow_img] = useState(0)
     const [base_img, setbase_img] = useState([]) 
     const [true_varian, settrue_varian] = useState(0)
@@ -25,31 +25,31 @@ const ShowProduct = () => {
     const [ref_id, setref_id] = useState("") 
     
     
-    useEffect(()=>{
-        const cart = localStorage.getItem("keranjang_base")
-        if(cart !== null){
-            setbase_keranjang(JSON.parse(cart))
-        }
-        const getData = async () => {
-            const user_id = router.query.ref_id
-            const Query = query(ProductCollection);
-            const querySnapshot = await getDocs(Query); 
-            const a = []
-            querySnapshot.forEach((snapshot) => {
-                a.push(snapshot) 
-           });
-           const b = a.filter((a)=>a.id ===user_id )
-        //    alert(b)
-           if(b.length !== 0){ 
-            setbase(b[0].data())
-            setbase_varian(b[0].data().varian)
-            settrue_varian(b[0].data().varian[0])
-            setbase_img(b[0].data().img)
-        }
-        };
-        getData()
-        //eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+    // useEffect(()=>{
+    //     const cart = localStorage.getItem("keranjang_base")
+    //     if(cart !== null){
+    //         setbase_keranjang(JSON.parse(cart))
+    //     }
+    //     const getData = async () => {
+    //         const user_id = router.query.ref_id
+    //         const Query = query(ProductCollection);
+    //         const querySnapshot = await getDocs(Query); 
+    //         const a = []
+    //         querySnapshot.forEach((snapshot) => {
+    //             a.push(snapshot) 
+    //        });
+    //        const b = a.filter((a)=>a.id ===user_id )
+    //     //    alert(b)
+    //        if(b.length !== 0){ 
+    //         setbase(b[0].data())
+    //         setbase_varian(b[0].data().varian)
+    //         settrue_varian(b[0].data().varian[0])
+    //         setbase_img(b[0].data().img)
+    //     }
+    //     };
+    //     getData()
+    //     //eslint-disable-next-line react-hooks/exhaustive-deps
+    // },[])
 
     function convertToRupiah(angka){
         var rupiah = '';		
@@ -76,7 +76,6 @@ const ShowProduct = () => {
         base_keranjang.push(key)
         // localStorage.removeItem("keranjang_base")
         localStorage.setItem("keranjang_base", JSON.stringify(base_keranjang))
-        // alert(JSON.stringify(key))
     }
     return(
         <div className={styles.container}>
@@ -128,5 +127,3 @@ const ShowProduct = () => {
         </div>
     )
 }
-
-export default ShowProduct

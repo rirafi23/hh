@@ -4,12 +4,16 @@ import styles from '../../styles/header.module.css'
 import { BsArrowDown, BsArrowUp, BsFillBellFill,BsFillCartFill, BsMenuDown, BsSearch, BsSortDown } from "react-icons/bs";
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import ProfilePage from '../profil';
+import PageNotif from '../notif';
 
-const HeaderPage = ({req}) => {
+export default function HeaderPage ({req}) {
     const [value_DD, setvalue_DD] = useState(false)
     const [local_user, setlocal_user] = useState([])
     const [cart, setcart] = useState(0)
     const [notif, setNotif] = useState()
+    const [profil_on, setprofil_on] = useState(false)
+    const [notification_on, setnotification_on] = useState(false)
     const router = useRouter()
     
     useEffect(()=>{
@@ -41,7 +45,7 @@ const HeaderPage = ({req}) => {
     }
     const render_input = () => {
         if(req === "show"){
-            return null
+            return <div></div>
         }else{
             return(
                 <div  className={styles.boxSearch}>
@@ -49,6 +53,14 @@ const HeaderPage = ({req}) => {
                     <BsSearch className={styles.icon}/>
                 </div>
             )
+        }
+    }
+    
+    const OnPress_keranjang = () => {
+        if(local_user.length === 0){
+            router.push("/keranjang")
+        }else{
+            alert("login")
         }
     }
 
@@ -64,7 +76,7 @@ const HeaderPage = ({req}) => {
     }
     const NotifPage = (icon_name) =>{
         return(
-            <div className={styles.boxIcon}>
+            <div onClick={()=>setnotification_on(!notification_on)} className={styles.boxIcon}>
                 <div style={0 === 0 ? {display:"none"}:null} className={styles.IconAbsolut}>
                     <p className={styles.textIcon}>{0}</p>
                 </div>
@@ -77,16 +89,16 @@ const HeaderPage = ({req}) => {
             <div className={styles.left}>
                 <Image src="/vercel.svg" alt='nana' width={100} height={30}/>
             </div>
-            {local_user.length !== 0 ? (
+            {local_user.length === 0 ? (
                 <div className={styles.right2}>
                     {render_input()}
                     <BsSearch className={styles.icon2}/>
                     {NotifPage("notif")}
                     {CartPage("cart")}
-                    <div className={styles.card_pp}>
-                    <Image src="/user.png" alt='nana' width={15} height={30} />
-                    <p className={styles.text}>Username</p>
-                    <BsArrowDown/>
+                    <div onClick={()=>setprofil_on(!profil_on)} className={styles.card_pp}>
+                        <Image src="/user.png" alt='nana' width={15} height={30} />
+                        <p className={styles.text}>Username</p>
+                        <BsArrowDown/>
                     </div>  
                     <div  className={styles.img_hiden}>
                     <Image alt='yyyy' src={'/user.png'} layout="responsive" width={15} height={15}/>
@@ -100,7 +112,7 @@ const HeaderPage = ({req}) => {
                     </div>
                     <BsSearch className={styles.icon2}/>
                     <BsFillBellFill className={styles.icon1}/>
-                    <BsFillCartFill className={styles.icon1}/>
+                    <BsFillCartFill onClick={()=>OnPress_keranjang()} className={styles.icon1}/>
                     <div className={styles.dropdown}>
                     <button onClick={()=>setvalue_DD(!value_DD)} className={styles.button}>Login {value_DD !== true ? <BsArrowDown/> : <BsArrowUp/>}</button>
                     {value_DD === true ? <button onClick={()=>Login(1)} className={styles.button}>Pembeli</button> : null}
@@ -108,7 +120,19 @@ const HeaderPage = ({req}) => {
                     </div>
                 </div>
             )}
+            {profil_on === true ? (
+            <div onClick={()=>setprofil_on(false)} className={styles.absolute}>
+                <div className={styles.card_absolute}>
+                    <ProfilePage/>
+                </div>
+            </div>
+            ):null}
+            {notification_on === true ? (
+            <div className={styles.absolute2}>
+                <div className={styles.card_absolute}>
+                    <PageNotif/>
+                </div>
+            </div>
+            ):null}
         </div>
     )}
-
-export default HeaderPage

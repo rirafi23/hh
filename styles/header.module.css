@@ -4,7 +4,8 @@
     display: grid;
     grid-template-columns: 60% 40%;
     background-color: #e9e9e9;
-    padding: 0px 3%;
+    padding: 0px 2.5%;
+    position: relative;
 }
 .left{
     width: 100%;
@@ -29,7 +30,7 @@
     width: 100%;
     display: grid;
     /* background-color: chartreuse; */
-    grid-template-columns: 65% 5% 5% 25%;
+    grid-template-columns: 57.5% 7.5% 7.5% 27.5%;
 }
 .boxSearch{
     margin: auto 0px;
@@ -97,7 +98,7 @@
     margin-left: 0.5vh;
 }
 .card_pp{
-    width:95%;
+    width:97.5%;
     height:70%;
     /* background-color: red; */
     border: solid #fff 1px;
@@ -108,7 +109,7 @@
     align-items: center;
     grid-template-columns: 25% 65% 10%;
     margin:auto;
-    margin-left: 5%;
+    margin-left: 2.5%;
 }
 .img_pp{
     width: 5vh;
@@ -145,14 +146,58 @@
 .img_hiden{
     display: none;
 }
+
+.absolute{
+    width: 96%;
+    height: 80vh;
+    position: absolute;
+    /* background-color: rgba(0,0,0,0.5); */
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 0px;
+    margin-top: 4.8%;
+}
+.absolute2{
+    width: 84%;
+    height: 80vh;
+    position: absolute;
+    /* background-color: rgba(0,0,0,0.5); */
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 0px;
+    margin-top: 4.8%;
+}
+.card_absolute{
+    width: 40vh;
+    min-height: 30vh;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: #d3d3d3 0px 0px 10px 0px;
+}
 @media only screen and (max-width: 600px) {
+    .absolute{
+        margin: 0px;
+        width: 100%;
+        margin-top: 8vh;
+    }
+    .absolute2{
+        margin: 0px;
+        width: 100%;
+        margin-top: 8vh;
+    }
+    .card_absolute{
+        width: 100%;
+        height: 100%;
+    }
     .container{
         height: 8vh;
         padding: 0px 3%;
         grid-template-columns: 50% 50%;
     }
     .right{
-        grid-template-columns:15% 15% 15% 55%;
+        grid-template-columns:17.5% 17.5% 17.5% 47.5%;
     }
     .boxSearch{
         display: none;
@@ -165,8 +210,11 @@
         margin: auto;
     }
     .button{
-        width: 90%;
+        width: 100%;
         margin: auto;
+    }
+    .dropdown{
+        width: 95%;
     }
     .img{
         width: 60%;
