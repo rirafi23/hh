@@ -14,6 +14,7 @@ export default function HeaderPage ({req}) {
     const [notif, setNotif] = useState()
     const [profil_on, setprofil_on] = useState(false)
     const [notification_on, setnotification_on] = useState(false)
+    const [notification_on2, setnotification_on2] = useState(false)
     const router = useRouter()
     
     useEffect(()=>{
@@ -23,7 +24,6 @@ export default function HeaderPage ({req}) {
         }
         getData()
     },[])
-
     const getData = () => {
         const base = localStorage.getItem("keranjang_base")
         if(base !== null){
@@ -44,7 +44,7 @@ export default function HeaderPage ({req}) {
         })
     }
     const render_input = () => {
-        if(req === "show"){
+        if(router.query.ref_query === "show"){
             return <div></div>
         }else{
             return(
@@ -66,11 +66,11 @@ export default function HeaderPage ({req}) {
 
     const CartPage = (icon_name) =>{
         return(
-            <div className={styles.boxIcon}>
+            <div onClick={()=>router.push("/keranjang")} className={styles.boxIcon}>
                 <div style={cart === 0 ? {display:"none"}:null} className={styles.IconAbsolut}>
                     <p className={styles.textIcon}>{cart}</p>
                 </div>
-                {icon_name === "cart" ? <BsFillCartFill className={styles.icon1}/> : <BsFillBellFill className={styles.icon1}/>}
+                {icon_name === "cart" ? <BsFillCartFill onClick={()=>router.push("/keranjang")} className={styles.icon1}/> : <BsFillBellFill className={styles.icon1}/>}
             </div>
         )
     }
@@ -89,7 +89,7 @@ export default function HeaderPage ({req}) {
             <div className={styles.left}>
                 <Image src="/vercel.svg" alt='nana' width={100} height={30}/>
             </div>
-            {local_user.length === 0 ? (
+            {local_user.length !== 0 ? (
                 <div className={styles.right2}>
                     {render_input()}
                     <BsSearch className={styles.icon2}/>
@@ -106,13 +106,10 @@ export default function HeaderPage ({req}) {
                 </div>
             ):(
                 <div className={styles.right}>
-                    <div className={styles.boxSearch}>
-                        <input className={styles.search}/>
-                        <BsSearch className={styles.icon}/>
-                    </div>
+                    {render_input()}
                     <BsSearch className={styles.icon2}/>
-                    <BsFillBellFill className={styles.icon1}/>
-                    <BsFillCartFill onClick={()=>OnPress_keranjang()} className={styles.icon1}/>
+                    <BsFillBellFill onClick={()=>setnotification_on2(!notification_on2)} className={styles.icon1}/>
+                    <BsFillCartFill onClick={()=>setvalue_DD(!value_DD)} className={styles.icon1}/>
                     <div className={styles.dropdown}>
                     <button onClick={()=>setvalue_DD(!value_DD)} className={styles.button}>Login {value_DD !== true ? <BsArrowDown/> : <BsArrowUp/>}</button>
                     {value_DD === true ? <button onClick={()=>Login(1)} className={styles.button}>Pembeli</button> : null}
@@ -129,6 +126,13 @@ export default function HeaderPage ({req}) {
             ):null}
             {notification_on === true ? (
             <div className={styles.absolute2}>
+                <div className={styles.card_absolute}>
+                    <PageNotif/>
+                </div>
+            </div>
+            ):null}
+            {notification_on2 === true ? (
+            <div onClick={()=>setnotification_on2(!notification_on2)} className={styles.absolute3}>
                 <div className={styles.card_absolute}>
                     <PageNotif/>
                 </div>

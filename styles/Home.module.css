@@ -65,7 +65,7 @@
   background-color: white;
   width: 100%;
   display: grid;
-  grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% ;
+  grid-template-columns: 14.25% 14.25% 14.25% 14.25% 14.25% 14.25% 14.25% ;
   min-height: 30vh;
 }
 .main_header2{

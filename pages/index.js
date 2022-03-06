@@ -13,18 +13,45 @@ import { Router, useRouter } from 'next/router'
 import PageNull from './page_null'
 
 const ProductCollection = collection(firestore,"product_table");
+const KategoriCollection = collection(firestore,"kategori_product");
 
 export default function Home() {
   const [img_conten, setimg_conten] = useState(0)
   const [on_categori, seton_categori] = useState(1)
   const [data_product, setdata_product] = useState([])
+  const [category_base, setcategory_base] = useState([])
   const router = useRouter()
 
   useEffect(()=>{
-    getData()
+    img_slide(0)
+    getKategori()
   },[])
 
-  const getData = async () => {
+  const img_slide = (a) => {
+    setimg_conten(a)
+    setTimeout(() => {
+      if(a === img_content.length - 1){
+        img_slide(0)
+      }else{
+        img_slide(a + 1)
+      }
+    },30000);
+  }
+  const getKategori = async () => {
+    const base = []
+     const Query = query(KategoriCollection);
+     const querySnapshot = await getDocs(Query); 
+     querySnapshot.forEach((snapshot) => {
+         var a = snapshot
+          base.push(a)
+     });
+     if(base.length !== 0){
+      setcategory_base(base)
+    }
+    getData(base[0].id)
+    seton_categori(base[0].id)
+  };
+  const getData = async (ref) => {
     const base_product = []
      const Query = query(ProductCollection);
      const querySnapshot = await getDocs(Query); 
@@ -32,8 +59,11 @@ export default function Home() {
          var a = snapshot
           base_product.push(a)
      });
-     if(base_product.length !== 0){
-       setdata_product(base_product)
+     const fil = base_product.filter(a=>a.data().category === ref)
+     if(fil.length !== 0){
+       setdata_product(fil)
+     }else{
+       setdata_product([])
      }
   };
 
@@ -47,6 +77,11 @@ export default function Home() {
     )
   }
 
+  const onPress = (res) => {
+    seton_categori(res)
+    getData(res)
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -58,28 +93,28 @@ export default function Home() {
       {content_slide()}
       <div className={styles.main}>
         <div className={styles.main_header2}>
-          {[1,2,3,4,5].map((a,b)=>{
+          {category_base.map((a,b)=>{
             return b === 0 ? (
-              <button onClick={()=>seton_categori(a)} style={a === on_categori ? {backgroundColor:"white"}:null} className={styles.card_main_header3}>
-                Makanan
+              <button onClick={()=>onPress(a.id)} style={a.id === on_categori ? {backgroundColor:"white"}:null} className={styles.card_main_header3}>
+                {a.data().name}
               </button>
             ):(
-              <button onClick={()=>seton_categori(a)} style={a === on_categori ? {backgroundColor:"white"}:null} className={styles.card_main_header3}>
-                masakan
+              <button onClick={()=>onPress(a.id)} style={a.id === on_categori ? {backgroundColor:"white"}:null} className={styles.card_main_header3}>
+                {a.data().name}
               </button>
             )
           })}
         </div>
         {/* /////////////////////////// */}
         <div className={styles.main_header}>
-          {[1,2,3,4,5].map((a,b)=>{
+          {category_base.map((a,b)=>{
             return b === 0 ? (
-              <button onClick={()=>seton_categori(a)} style={a === on_categori ? {backgroundColor:"white"}:null} className={styles.card_main_header1}>
-                Makanan
+              <button onClick={()=>onPress(a.id)} style={a.id === on_categori ? {backgroundColor:"white"}:null} className={styles.card_main_header1}>
+                {a.data().name}
               </button>
             ):(
-              <button onClick={()=>seton_categori(a)} style={a === on_categori ? {backgroundColor:"white"}:null} className={styles.card_main_header}>
-                masakan
+              <button onClick={()=>onPress(a.id)} style={a.id === on_categori ? {backgroundColor:"white"}:null} className={styles.card_main_header}>
+                {a.data().name}
               </button>
             )
           })}
@@ -89,7 +124,7 @@ export default function Home() {
         ):(
         <div className={styles.main_main}>
           {data_product.map((a,b)=>{
-            return <Card_page key={a.id} onPress={()=>router.push({pathname:"/product/show", query:{ref_id:a.id, ref_query:a.data()}})} data={a}/>
+            return <Card_page key={a.id} onPress={()=>router.push({pathname:"/product/show", query:{ref_id:a.id, ref_query:"show"}})} data={a}/>
           })}
         </div>
         )}

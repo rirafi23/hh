@@ -4,7 +4,6 @@ import styles from '../../../styles/show.module.css'
 import { BsArrowDown, BsArrowLeft, BsArrowUp, BsFillBellFill,BsFillCartFill, BsMenuDown, BsSearch, BsSkipStart, BsSortDown } from "react-icons/bs";
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import HeaderPage from '../../header';
 
 // database
 import firestore from "../../../firebase/clientApp";
@@ -13,7 +12,7 @@ import {collection,QueryDocumentSnapshot,DocumentData,query,where,limit,getDocs,
 const ProductCollection = collection(firestore,"product_table");
 
 
-export default function ShowProduct () {
+export default function ShowProduct ({id_product, value, setvalue}) {
     const [show_img, setshow_img] = useState(0)
     const [base_img, setbase_img] = useState([]) 
     const [true_varian, settrue_varian] = useState(0)
@@ -31,14 +30,13 @@ export default function ShowProduct () {
             setbase_keranjang(JSON.parse(cart))
         }
         const getData = async () => {
-            const user_id = router.query.ref_id
             const Query = query(ProductCollection);
             const querySnapshot = await getDocs(Query); 
             const a = []
             querySnapshot.forEach((snapshot) => {
                 a.push(snapshot) 
            });
-           const b = a.filter((a)=>a.id ===user_id )
+           const b = a.filter((a)=>a.id ===id_product )
         //    alert(b)
            if(b.length !== 0){ 
             setbase(b[0].data())
@@ -73,22 +71,15 @@ export default function ShowProduct () {
             created_ad:"",
             updated_ad:""
         }
-        const v = base_keranjang.filter(a=>a.id_product === ref_id)
-        if(v.length !== 0){
-            v[0].jumlah = parseInt(v[0].jumlah) + parseInt(value_sum)
-        }else{
-            base_keranjang.push(key)
-        }
-        localStorage.setItem("keranjang_base", JSON.stringify(base_keranjang))
+        base_keranjang.push(key)
         // localStorage.removeItem("keranjang_base")
+        localStorage.setItem("keranjang_base", JSON.stringify(base_keranjang))
     }
     return(
-        <div className={styles.container}>
-            <HeaderPage req={"show"}/>
-            <div className={styles.main}>
+            <div className={styles.main1}>
                 <div className={styles.main_left}>
-                    <header className={styles.left_header}>
-                        <BsArrowLeft onClick={()=>router.back()} className={styles.icon1}/>
+                <header className={styles.left_header}>
+                        <BsArrowLeft onClick={()=>setvalue("1")} className={styles.icon1}/>
                         <p className={styles.text1}>Dashboard / <a style={{color:"black"}}>{base.product_name}</a></p>
                     </header>
                     <div className={styles.main_main_left}>
@@ -119,16 +110,7 @@ export default function ShowProduct () {
                             return <p key={b} onClick={()=>settrue_varian(b)} style={a === true_varian ? {border:"solid red 2px "}:null} className={styles.text6}>{a}</p>
                         })}
                     </div>
-                    <div className={styles.right_row2}>
-                        <div className={styles.row2_left}>
-                            <button className={styles.btn} onClick={()=>sum(1)}>-</button>
-                            <p className={styles.text7}>{value_sum}</p>
-                            <button className={styles.btn} onClick={()=>sum(2)}>+</button>
-                        </div>
-                        <button className={styles.btn2} onClick={()=>Add_Cart()}>ADD TO CART</button>
-                    </div>
                 </div>
             </div>
-        </div>
     )
 }

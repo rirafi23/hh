@@ -11,6 +11,7 @@ import {collection,QueryDocumentSnapshot,DocumentData,query,where,limit,getDocs,
 import { useRouter } from 'next/router';
 
 const PenggunaCollection = collection(firestore,"pengguna");
+const MerchanCollection = collection(firestore,"pengguna_merchan")
 
 
 const LoginPage = () => {
@@ -19,7 +20,22 @@ const LoginPage = () => {
     const router = useRouter()
 
     const onLogin = async () => {
-       const Query = query(PenggunaCollection);
+       const Query = query(MerchanCollection);
+       const querySnapshot = await getDocs(Query); 
+       querySnapshot.forEach((snapshot) => {
+           const a = snapshot
+           if(a.data().email === email && a.data().password === password){
+                localStorage.setItem("merchanID",a.id)
+                router.push("/merchan")
+           }else if(a.data().email === email && a.data().password !== password){
+                alert("password salah!!")
+           }else if(a.data().email !== email && a.data().password !== password){
+               alert("email belum terdaftar")
+           }
+       });
+    };
+    const onLogin2 = async () => {
+        const Query = query(PenggunaCollection);
        const querySnapshot = await getDocs(Query); 
        querySnapshot.forEach((snapshot) => {
            const a = snapshot
@@ -55,7 +71,7 @@ const LoginPage = () => {
                             <label className={styles.label}>Password</label>
                             <input onChange={e=>setPassword(e.target.value)} placeholder='*******' className={styles.input}/>
                         </div>
-                        <button onClick={()=>onLogin()} className={styles.btn}>LOGIN</button>
+                        <button onClick={()=>parseInt(router.query.key) === 2 ? onLogin() : onLogin2()} className={styles.btn}>LOGIN</button>
                     </div>
                     <div style={{width:"100%", height:"100%", display:"flex", justifyContent:"center",alignItems:"center"}}>
                     <p>Belum Memiliki Akun <a className={styles.a}>Register...</a></p>

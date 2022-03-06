@@ -169,6 +169,17 @@
     padding: 0px;
     margin-top: 4.8%;
 }
+.absolute3{
+    width: 90%;
+    height: 80vh;
+    position: absolute;
+    /* background-color: rgba(0,0,0,0.5); */
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 0px;
+    margin-top: 4.8%;
+}
 .card_absolute{
     width: 40vh;
     min-height: 30vh;

@@ -6,6 +6,10 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 const ProfilePage = () => {
+    const logout = () => {
+        localStorage.removeItem("user_pembeli")
+        
+    }
     return(
         <div className={styles.container}>
             <div className={styles.header}>
@@ -50,7 +54,7 @@ const ProfilePage = () => {
                     About
                     <BsArrowDownCircleFill/>
                 </div>
-                <div className={styles.main2_row}>
+                <div onClick={()=>logout()} className={styles.main2_row}>
                     log out
                     <BsDoorClosed/>
                 </div>

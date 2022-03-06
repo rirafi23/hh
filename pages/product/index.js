@@ -4,12 +4,16 @@ import { useEffect, useState } from 'react'
 import styles from '../../styles/card_product.module.css'
 
 const Card_page = ({data, onPress})=>{
-    const [base, setbase] = useState([])
+    const [img1, setimg] = useState("")
+    const [base, setbase] = useState({
+        product_name:"",
+        harga:0,
+        terjual:""
+    })
     useEffect(()=>{
-        if(data !== null || data != undefined || data != ""){
-            base.push(data)
-        }
-    },[]) 
+        setbase(data.data())
+        setimg(data.data().img[0])
+    },[])
     function convertToRupiah(angka){
         var rupiah = '';		
         var angkarev = angka.toString().split('').reverse().join('');
@@ -22,16 +26,17 @@ const Card_page = ({data, onPress})=>{
             onPress()
         }} className={styles.container}>
             <div className={styles.img}>
-                <Image alt="Aa"
-                src="/img-cth1.jpg" 
-                 width="100%" height="100%" layout="responsive" />
+                <img style={{width:"100%", height:"100%"}} src={img1} />
+                {/* <Image alt="Aa"
+                src={} 
+                 width={25} height={30} layout="responsive" /> */}
             </div>
             <div className={styles.card}>
                 <div>
-                <p className={styles.text1}>{base.length !== 0 ? base[0].data().product_name.slice(0,13):null}...</p>
-                <p className={styles.text2}>{base.length !== 0 ? convertToRupiah(base[0].data().harga):null}</p>
+                <p className={styles.text1}>{base.product_name.slice(0,30)}...</p>
+                <p className={styles.text2}>{convertToRupiah(base.harga)}</p>
                 </div>
-                <p className={styles.text3}>{base.length !== 0 ? base[0].data().terjual.harga:null}terjual</p>
+                <p className={styles.text3}>{base.terjual}terjual</p>
             </div>
         </div>
 

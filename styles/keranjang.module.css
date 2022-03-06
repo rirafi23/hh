@@ -69,12 +69,16 @@
     height: 15vh;
     border: solid gray 1px;
     background-color: white;
+    text-align: left;
+    justify-content: flex-start;
+    align-items: flex-start;
     border-radius: 5px;
 }
 .card_left{
     width: 90%;
     height: 10vh;
-    background-color: aqua;
+    border: #d3d3d3;
+    /* background-color: aqua; */
 }
 .left_row2{
     width: 100%;
